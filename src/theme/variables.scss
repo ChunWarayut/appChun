@@ -3,6 +3,23 @@
 
 /** Ionic CSS Variables **/
 :root {
+  @import url('https://fonts.googleapis.com/css?family=Athiti|Itim|Kanit|Mitr|Pridi|Sriracha');
+*{
+  font-family: 'Kanit', sans-serif;
+  font-family: 'Itim', cursive;
+  font-family: 'Pridi', serif;
+  font-family: 'Mitr', sans-serif;
+  font-family: 'Athiti', sans-serif;
+  font-family: 'Sriracha', cursive;
+}
+
+ion-toolbar {
+  --background: #ffbd48;
+}
+ion-content {
+  background: #EDEDED;
+}
+
   /** primary **/
   --ion-color-primary: #488aff;
   --ion-color-primary-rgb: 72,138,255;
@@ -74,4 +91,5 @@
   --ion-color-dark-contrast-rgb: 255,255,255;
   --ion-color-dark-shade: #1e1e1e;
   --ion-color-dark-tint: #383838;
+  
 }

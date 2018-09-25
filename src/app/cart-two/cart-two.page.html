@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>cartTwo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding align='center'>
+{{location}}
+<ion-grid>
+  <ion-row>
+    <ion-col>
+      <ion-button (click)="pushCart()" routerDirection="" color="primary" fill="clear" size="small" type="submit" expand="block" round strong> ใช้ที่อยู่เดิม </ion-button>
+    </ion-col>
+    <ion-col>
+      <ion-button (click)="pushCartNew()" routerDirection="" color="medium" fill="clear" size="small" type="submit" expand="block" round strong> ใช้ที่อยู่ใหม่ </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+<ion-button (click)="goBack()" routerDirection="" color="primary" fill="full" round strong> หน้าหลัก </ion-button>
+</ion-content>

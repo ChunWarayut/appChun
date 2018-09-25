@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>foodDetail</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <p>
+    <ion-img src="https://firebasestorage.googleapis.com/v0/b/lungnuad-a547e.appspot.com/o/images%2F{{item.FOOD_IMG}}.jpg?alt=media&token=b934ec8f-234a-47cf-9d6a-4b5376fdb8d8"></ion-img>
+      <ion-item color='warning'>
+        <ion-label>
+          {{item.FOOD_NAME}}
+        </ion-label>
+      </ion-item>
+    
+      <ion-item color='warning'>
+        <ion-label>
+            ราคา &nbsp; {{item.FOOD_PRICE}} &nbsp; บาท
+        </ion-label>
+      </ion-item>
+        <ion-item>
+          <ion-label>
+            จำนวน : &nbsp;&nbsp;
+          </ion-label>
+          <ion-input required type="text" name='amout' [(ngModel)]="amout" placeholder="จำนวนที่ต้องการสั่ง">
+            กล่อง
+          </ion-input>
+        </ion-item>
+    </p>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-button (click)="goBack()" routerDirection="" color="medium" type="submit" expand="block" round strong> ย้อนกลับ </ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button  *ngIf="amout"  (click)="createCartList()" routerDirection="" color="primary" type="submit" expand="block" round strong>ยืนยัน </ion-button>
+          <ion-button  *ngIf="!amout" (click)="errorCreate()" routerDirection="" color="warning" type="submit" expand="block" round strong>ยืนยัน </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+</ion-content>

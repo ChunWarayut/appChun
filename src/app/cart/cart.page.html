@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>cart</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding align='center'>
+รวมเป็นเงิน &nbsp; {{total}} &nbsp; บาท
+<ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-button (click)="goBack()" routerDirection="" color="medium" type="submit" expand="block" round strong> ย้อนกลับ </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button (click)="goTO()" routerDirection="" color="warning" type="submit" expand="block" round strong> ถัดไป </ion-button>      
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-list lines="false" inset="true" *ngFor="let item of data" align='left'> 
+      <ion-item>
+          {{item.food}} &nbsp;  {{item.amount}} &nbsp; กล่อง &nbsp; {{item.price}} &nbsp; บาท
+        </ion-item>
+  </ion-list>
+</ion-content>
