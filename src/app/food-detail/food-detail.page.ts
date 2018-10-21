@@ -9,6 +9,7 @@ import * as firebase from 'firebase';
 })
 export class FoodDetailPage implements OnInit {
 
+  newPostKey = firebase.database().ref().child('posts').push().key;
   food;
   item: any;
   amout;
@@ -30,13 +31,13 @@ export class FoodDetailPage implements OnInit {
     await  this.route.params.subscribe(
       param => {
         const  cartList = {
-          id: param.FOOD_ID,
+          id: this.newPostKey,
           food: param.FOOD_NAME,
           price: param.FOOD_PRICE,
           amount: this.amout,
           amout: this.amout * param.FOOD_PRICE
         };
-        firebase.database().ref('cart-list/').push(cartList);
+        firebase.database().ref('cartList/').push(cartList);
         this.goTO();
       }
     );

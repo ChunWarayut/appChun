@@ -15,10 +15,10 @@ export class DetailPage implements OnInit {
     public router: Router) { }
 
   ngOnInit() {
-    this.database.list('/detail/' ).valueChanges().subscribe(_data => {
+    this.database.list('/users-detail/'  + this.ID).valueChanges().subscribe(_data => {
       this.food = _data;
       console.log(_data);
-      
+
     });
   }
 

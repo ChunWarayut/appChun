@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
+import * as firebase from 'firebase';
 @Component({
   selector: 'app-detail-list',
   templateUrl: './detail-list.page.html',
@@ -20,8 +20,13 @@ export class DetailListPage implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(
       param => {
-        this.item = param;
-        console.log(param);
+        this.item = param.id;
+        console.log(this.item);
+        
+        var ref2 = firebase.database().ref('users-detail/'  + firebase.auth().currentUser.uid + '/' + '-LPN4sgXxLd3fCPIJ21l');
+        ref2.orderByKey().on("value", function(snapshot) {
+          console.log(snapshot.val());
+        })
       }
     );
   }

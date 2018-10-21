@@ -17,11 +17,11 @@ export class CartPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.database.list('/cart-list/').valueChanges().subscribe(_data => {
+    this.database.list('/cartList/').valueChanges().subscribe(_data => {
       this.data = _data;
       console.log(_data);
     });
-    firebase.database().ref('cart-list').orderByChild('amout').on('child_added', _data => {
+    firebase.database().ref('cartList').orderByChild('amout').on('child_added', _data => {
       let add = 0;
       add = Number( _data.val().amout );
       this.total += add;
@@ -29,7 +29,7 @@ export class CartPage implements OnInit {
       const summary = {
         total: this.total
       };
-    firebase.database().ref('total').update(summary);
+    firebase.database().ref().update(summary);
     });
   }
   async  goBack() {

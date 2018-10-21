@@ -45,7 +45,7 @@ export class CartTwoPage implements OnInit {
         let curr_minutes = d.getMinutes();
         let curr_secounds = d.getSeconds();
         const list = {
-          id: 'abc',
+          id: firebase.database().ref().child('posts').push().key,
           name: this.name,
           location: this.location,
           food: _data,
@@ -54,16 +54,41 @@ export class CartTwoPage implements OnInit {
         };
             
         // Get a key for a new Post.
-        var newPostKey = firebase.database().ref().child('posts').push().key;
+        let newPostKey = firebase.database().ref().child('posts').push().key;
 
         // Write the new post's data simultaneously in the posts list and the user's post list.
-        var updates = {};
-        let  uid = '1';
+        let updates = {};
         updates['/detail/' + newPostKey] = list;
-        updates['/user-detail/'  + this.UID +'/' +newPostKey] = newPostKey, list;
+        updates['/users-detail/'  + this.UID +'/' + newPostKey] = list;
 
         return firebase.database().ref().update(updates).then((_data)=>{
-          this.router.navigate(['/cartload'])
+          let cartclc = {
+            cartList:''
+          };
+          let totalclc = {
+            total:''
+          }
+          firebase.database().ref().update(cartclc);
+          firebase.database().ref().update(totalclc);/* 
+          var ref = firebase.database().ref('/detail/');
+          ref.orderByKey().on("child_added", function(snapshot) {
+            console.log(snapshot.key);
+
+            if(snapshot.val().food == null || snapshot.val().total == null ){
+              firebase.database().ref('/detail/' + snapshot.key).remove();
+            }
+          })          
+          var ref2 = firebase.database().ref('users-detail/'  + this.UID );
+          ref2.orderByKey().on("child_added", function(snapshot) {
+            console.log(snapshot.key);
+            firebase.auth().currentUser.uid
+
+            if(snapshot.val().food == null ||  snapshot.val().total == null ){
+            firebase.database().ref('users-detail/'+ firebase.auth().currentUser.uid + '/' + snapshot.key ).remove();              
+            }
+          }) */
+
+          this.router.navigate(['/detail']);        
         }
         );
       });

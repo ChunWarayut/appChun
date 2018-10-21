@@ -10,7 +10,7 @@
 <ion-content padding>
     <ion-list *ngFor="let item of food" (click)="onClick(item)">
         <ion-item>
-           เลขที่ใบสั่งซื้อ &nbsp; {{item.key}} &nbsp;   
+           รหัสใบสั่งซื้อ &nbsp; {{item.id}} &nbsp;   
         </ion-item>
         <ion-item>
            สถานะ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{item.status}} 
