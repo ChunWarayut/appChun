@@ -26,20 +26,20 @@
       <ion-input type="password" [(ngModel)]="password" name="password" required="required"placeholder="********************"></ion-input>
     </ion-item>
 
-    <ion-button expand="full" fill="outline" color="primary" clear block (click)="signup()">หากยังไม่มีบัญชี สร้างบัญชีที่นี่!!</ion-button> 
-  
-    <ion-button expand="block"  color="success" *ngIf="email && password "  (click)="login()">
-      เข้าสู่ระบบ
-    </ion-button>
-   <!-- Show dead button if form is not filled -->
-      <ion-button expand="block" color="warning"  *ngIf="!email || !password" (click)="loginFailPresentToast()">
-        เข้าสู่ระบบ
-        <!-- <ion-icon slot="end" name="log-in"></ion-icon> -->
-      </ion-button>
-
   </ion-list>
    
    
+  <a href="/signup">หากยังไม่มีบัญชี สร้างบัญชีที่นี่!!</a> 
+  <br/>
+  <ion-button expand="block"  color="success" *ngIf="email && password "  (click)="login()">
+    เข้าสู่ระบบ
+  </ion-button>
+ <!-- Show dead button if form is not filled -->
+    <ion-button expand="block" color="warning"  *ngIf="!email || !password" (click)="loginFailPresentToast()">
+      เข้าสู่ระบบ
+      <!-- <ion-icon slot="end" name="log-in"></ion-icon> -->
+    </ion-button>
+
       </ion-col>
     </ion-row>
     <ion-row>

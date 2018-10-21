@@ -9,48 +9,58 @@ import * as firebase from 'firebase';
 })
 export class CartloadPage implements OnInit {
 
+  user = firebase.auth().currentUser
   constructor(
     public loadingController: LoadingController,
     public router: Router
   ) {
-     setTimeout(async() => {
-      const loadding = loadingController.create({
-        message: 'รอสักครู่',
-        duration: 5000
-      });
-    }, 0);
-    setTimeout(() => {
-      firebase.database().ref('cart-list').remove();
-      firebase.database().ref('total').remove();
-      this.router.navigate(['/detail']);
-     }, 5000);
+    
    }
 
- ngOnInit() {
-  setTimeout(async() => {
-    const loadding = this.loadingController.create({
-      message: 'รอสักครู่',
-      duration: 5000
-    });
-  }, 0);
-  setTimeout(() => {
-    firebase.database().ref('cart-list').remove();
-    firebase.database().ref('total').remove();
-    this.router.navigate(['/detail']);
-   }, 5000);
+   doRefresh(event) {
+    console.log('Begin async operation');
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.target.complete();
+      this.router.navigate(['/detail']);                                
+    }, 2000);
   }
 
-  ionViewWillLoad() {
-    setTimeout(async() => {
-      const loadding = this.loadingController.create({
-        message: 'รอสักครู่',
-        duration: 5000
-      });
-    }, 0);
-    setTimeout(() => {
-      firebase.database().ref('cart-list').remove();
-      firebase.database().ref('total').remove();
-      this.router.navigate(['/detail']);
-     }, 5000);
+
+ ngOnInit() {
+  var ref = firebase.database().ref('/cart-list/');
+    ref.orderByKey().limitToLast(1).on("child_added", function(snapshot) {
+      
+      if(snapshot.val()==null){
+        setTimeout(() => {
+        this.router.navigate(['/detail']);                          
+        }, 3000);
+      }
+    })
+  }
+
+  ionClick() {
+    firebase.database().ref('cart-list').remove();
+    firebase.database().ref('total').remove();
+    var ref = firebase.database().ref('/detail/');
+    ref.orderByKey().on("child_added", function(snapshot) {
+      console.log(snapshot.key);
+
+      if(snapshot.val().food == null){
+        firebase.database().ref('/detail/' + snapshot.key).remove();
+      }
+    })
+
+    ref.orderByKey().on("child_added", function(snapshot) {
+      console.log(snapshot.key);
+      
+     
+      if(snapshot.val().total == null){
+        firebase.database().ref('/detail/' + snapshot.key).remove();
+      }
+      
+    })
+    this.router.navigate(['/detail']);        
   }
 }
