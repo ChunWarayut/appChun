@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as firebase from 'firebase';
+import { AngularFireDatabase } from 'angularfire2/database';
 @Component({
   selector: 'app-detail-list',
   templateUrl: './detail-list.page.html',
@@ -9,10 +10,19 @@ import * as firebase from 'firebase';
 export class DetailListPage implements OnInit {
 
   item: any;
+/* 
+  id = '00';
+  location = '000';
+  name = '000';
+  status = '000';
+  total = '0000'; */
 
+  detail
   constructor(
+    public database: AngularFireDatabase,
     
     private route: ActivatedRoute,
+
   ) { 
     
   }
@@ -22,11 +32,10 @@ export class DetailListPage implements OnInit {
       param => {
         this.item = param.id;
         console.log(this.item);
-        
-        var ref2 = firebase.database().ref('users-detail/'  + firebase.auth().currentUser.uid + '/' + '-LPN4sgXxLd3fCPIJ21l');
-        ref2.orderByKey().on("value", function(snapshot) {
-          console.log(snapshot.val());
-        })
+        this.database.list('users-detail/'  + firebase.auth().currentUser.uid + '/' + this.item).valueChanges().subscribe(_data => {
+          this.detail = _data;
+          console.log(_data);
+        });
       }
     );
   }

@@ -1,18 +1,16 @@
 <ion-header>
   <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>  
     <ion-title>detail-list</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-    <ion-item color='warning'>
-        <ion-label>
-        </ion-label>
-      </ion-item>
+    <p *ngFor="let item of detail" >
     
-      <ion-item color='warning'>
-        <ion-label>
-            ราคา &nbsp;  &nbsp; บาท
-        </ion-label>
-      </ion-item>
+          {{item.id}}
+  
+      </p>
 </ion-content>

@@ -10,6 +10,7 @@ import * as firebase from 'firebase';
 export class CartTwoPage implements OnInit {
   UID = firebase.auth().currentUser.uid;
   name = firebase.auth().currentUser.displayName;
+  
   location;
 
   item;
@@ -33,7 +34,7 @@ export class CartTwoPage implements OnInit {
   async pushCart() {
     await firebase.database().ref('total').once('value').then(dat => {
       console.log(dat.val());
-    this.database.list('cart-list').valueChanges().subscribe(_data => {
+    this.database.list('cartList').valueChanges().subscribe(_data => {
       console.log(_data);
       firebase.database().ref('users/' + this.UID).once('value').then(data => {
         this.location = data.val().location;
@@ -44,8 +45,11 @@ export class CartTwoPage implements OnInit {
         let curr_hourse = d.getHours();
         let curr_minutes = d.getMinutes();
         let curr_secounds = d.getSeconds();
+        
+        // Get a key for a new Post.
+        let newPostKey = firebase.database().ref().child('posts').push().key;
         const list = {
-          id: firebase.database().ref().child('posts').push().key,
+          id: newPostKey,
           name: this.name,
           location: this.location,
           food: _data,
@@ -53,8 +57,6 @@ export class CartTwoPage implements OnInit {
           total: dat.val()
         };
             
-        // Get a key for a new Post.
-        let newPostKey = firebase.database().ref().child('posts').push().key;
 
         // Write the new post's data simultaneously in the posts list and the user's post list.
         let updates = {};
@@ -69,25 +71,8 @@ export class CartTwoPage implements OnInit {
             total:''
           }
           firebase.database().ref().update(cartclc);
-          firebase.database().ref().update(totalclc);/* 
-          var ref = firebase.database().ref('/detail/');
-          ref.orderByKey().on("child_added", function(snapshot) {
-            console.log(snapshot.key);
-
-            if(snapshot.val().food == null || snapshot.val().total == null ){
-              firebase.database().ref('/detail/' + snapshot.key).remove();
-            }
-          })          
-          var ref2 = firebase.database().ref('users-detail/'  + this.UID );
-          ref2.orderByKey().on("child_added", function(snapshot) {
-            console.log(snapshot.key);
-            firebase.auth().currentUser.uid
-
-            if(snapshot.val().food == null ||  snapshot.val().total == null ){
-            firebase.database().ref('users-detail/'+ firebase.auth().currentUser.uid + '/' + snapshot.key ).remove();              
-            }
-          }) */
-
+          firebase.database().ref().update(totalclc);
+          this.checkion();
           this.router.navigate(['/detail']);        
         }
         );
@@ -95,6 +80,34 @@ export class CartTwoPage implements OnInit {
     });
   });
   }
+  checkion(){
+    
+          var ref = firebase.database().ref('/detail/');
+          ref.orderByKey().on("child_added", function(snapshot) {
+            console.log(snapshot.key);
+
+            if(snapshot.val().food == null){
+              firebase.database().ref('/detail/' + snapshot.key).remove();
+            }
+            if(snapshot.val().total == null){
+              firebase.database().ref('/detail/' + snapshot.key).remove();
+            }
+            
+          })          
+          var ref2 = firebase.database().ref('users-detail/'  + this.UID );
+          ref2.orderByKey().on("child_added", function(snapshot) {
+            console.log(snapshot.key);
+            firebase.auth().currentUser.uid
+
+            if(snapshot.val().food == null){
+            firebase.database().ref('users-detail/'+ firebase.auth().currentUser.uid + '/' + snapshot.key ).remove();              
+            }
+            if(snapshot.val().total == null ){
+              firebase.database().ref('users-detail/'+ firebase.auth().currentUser.uid + '/' + snapshot.key ).remove();              
+              }
+          })
+  }
   pushCartNew() {
   }
+
 }
