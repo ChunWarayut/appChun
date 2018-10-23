@@ -8,14 +8,12 @@
 </ion-header>
 
 <ion-content padding>
-    <ion-list *ngFor="let item of food" (click)="onClick(item)">
+    <ion-list *ngFor="let item of food "  (click)="onClick(item)">
         <ion-item>
-           รหัสใบสั่งซื้อ &nbsp; {{item.id}} &nbsp;   
+           รหัสใบสั่งซื้อ &nbsp; {{item.detailID}} &nbsp;   
         </ion-item>
         <ion-item>
            สถานะ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{item.status}} 
         </ion-item>
-            
-       
     </ion-list>
 </ion-content>

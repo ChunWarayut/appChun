@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>  
+    <ion-title>setting</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-card>
+  <ion-list>
+      &nbsp;&nbsp;&nbsp;&nbsp;อีเมลล์
+  </ion-list>
+  <ion-list>
+    <ion-item>
+      <ion-item>
+          {{email}}
+      </ion-item>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+      &nbsp;&nbsp;&nbsp;&nbsp;ชื่อ
+  </ion-list>
+  <ion-list>
+    <ion-item>
+      <ion-item>
+          {{name}}
+      </ion-item>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+      &nbsp;&nbsp;&nbsp;&nbsp;เบอร์โทรศัพท์
+  </ion-list>
+  <ion-list>
+    <ion-item>
+      <ion-item>
+          {{phone}}
+      </ion-item>
+    </ion-item>
+  </ion-list>
+  
+  <ion-list>
+      &nbsp;&nbsp;&nbsp;&nbsp;ที่อยู่
+  </ion-list>
+  <ion-list>
+    <ion-item>
+      <ion-item>
+        {{location}}
+      </ion-item>
+    </ion-item>
+  </ion-list>
+  </ion-card>
+      <ion-button expand="block"  color="danger" (click)=" btnLogout()">
+        ออกจากระบบ
+      </ion-button>
+</ion-content>

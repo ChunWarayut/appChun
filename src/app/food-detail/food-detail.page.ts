@@ -31,7 +31,7 @@ export class FoodDetailPage implements OnInit {
     await  this.route.params.subscribe(
       param => {
         const  cartList = {
-          id: this.newPostKey,
+          foodID: this.newPostKey,
           food: param.FOOD_NAME,
           price: param.FOOD_PRICE,
           amount: this.amout,
@@ -43,7 +43,7 @@ export class FoodDetailPage implements OnInit {
     );
   }
   async goTO() {
-    await  this.router.navigate(['cart']);
+    await  this.router.navigate(['/cart']);
   }
   async  goBack() {
     await  this.router.navigate(['/food']);

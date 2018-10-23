@@ -9,7 +9,13 @@ import { AngularFireDatabase } from 'angularfire2/database';
 })
 export class DetailListPage implements OnInit {
 
-  item: any;
+  detailID
+  name
+  item
+  total
+  location
+  status
+
 /* 
   id = '00';
   location = '000';
@@ -30,11 +36,14 @@ export class DetailListPage implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(
       param => {
-        this.item = param.id;
-        console.log(this.item);
-        this.database.list('users-detail/'  + firebase.auth().currentUser.uid + '/' + this.item).valueChanges().subscribe(_data => {
-          this.detail = _data;
-          console.log(_data);
+        this.detailID = param.detailID;
+        this.name = param.name;
+        this.total = param.total
+        this.location = param.location;
+        this.status = param.status
+        this.database.list('users-detail/'  + firebase.auth().currentUser.uid + '/' + param.detailID).valueChanges().subscribe(_data => {
+          this.detail = _data[2];
+          console.log(this.detail);
         });
       }
     );

@@ -16,16 +16,15 @@ export class CartPage implements OnInit {
     public router: Router
   ) { }
 
-  ngOnInit() {
-    this.database.list('/cartList/').valueChanges().subscribe(_data => {
+  async ngOnInit() {
+    await this.database.list('/cartList/').valueChanges().subscribe(_data => {
       this.data = _data;
       console.log(_data);
     });
-    firebase.database().ref('cartList').orderByChild('amout').on('child_added', _data => {
-      let add = 0;
-      add = Number( _data.val().amout );
-      this.total += add;
-      console.log(this.total);
+
+    await firebase.database().ref('cartList').orderByChild('amout').on('child_added', _data => {
+      
+      this.total += _data.val().amout;
       const summary = {
         total: this.total
       };

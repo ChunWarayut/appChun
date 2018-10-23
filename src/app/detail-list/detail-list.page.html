@@ -7,10 +7,37 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-    <p *ngFor="let item of detail" >
-    
-          {{item.id}}
-  
-      </p>
+<ion-content >
+      <ion-card>
+        <ion-list>
+            <ion-item >
+                รหัสใบสั่งซื้อ :&nbsp; &nbsp; {{detailID}}
+            </ion-item>
+            <ion-item>
+                    &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;   ชื่อ : &nbsp; &nbsp;{{name}}
+            </ion-item>
+            <ion-item>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ที่จัดส่ง : &nbsp; &nbsp;{{location}}
+            </ion-item>
+           
+            <ion-item>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ราคา : &nbsp; &nbsp;{{total}} &nbsp; บาท
+            </ion-item>
+            <ion-item >
+                <ion-label text-center>
+                    อาหารที่สั่ง
+                </ion-label> 
+            </ion-item>
+            <ion-item *ngFor="let item of detail">
+                <ion-label text-center>
+                        {{item.food}} จำนวน  {{item.amount}} กล่อง                   
+                </ion-label> 
+            </ion-item>
+        </ion-list>
+        <ion-item >
+            <ion-label text-center>  
+            สถานะการจัดส่ง: &nbsp; {{status}}                  
+            </ion-label> 
+        </ion-item>
+</ion-card>
 </ion-content>

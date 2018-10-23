@@ -9,8 +9,10 @@ const routes: Routes = [
   { path: 'foodDetail', loadChildren: './food-detail/food-detail.module#FoodDetailPageModule' },
   { path: 'cart', loadChildren: './cart/cart.module#CartPageModule' },
   { path: 'cartTwo', loadChildren: './cart-two/cart-two.module#CartTwoPageModule' },
-  { path: 'cartload', loadChildren: './cartload/cartload.module#CartloadPageModule' },
-  { path: 'detail', loadChildren: './detail/detail.module#DetailPageModule' },  { path: 'detail-list', loadChildren: './detail-list/detail-list.module#DetailListPageModule' }
+  { path: 'detail', loadChildren: './detail/detail.module#DetailPageModule' },
+  { path: 'detail-list', loadChildren: './detail-list/detail-list.module#DetailListPageModule' },
+  { path: 'setting', loadChildren: './setting/setting.module#SettingPageModule' },
+
 
 ];
 

@@ -27,6 +27,11 @@ export class AppComponent {
       title: 'สถานะอาหาร',
       url: '/detail',
       icon: 'basket'
+    },
+    {
+      title: 'ข้อมูลส่วนตัว',
+      url: '/setting',
+      icon: 'settings'
     }
   ];
 

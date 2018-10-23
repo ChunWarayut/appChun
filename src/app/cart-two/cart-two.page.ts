@@ -10,9 +10,11 @@ import * as firebase from 'firebase';
 export class CartTwoPage implements OnInit {
   UID = firebase.auth().currentUser.uid;
   name = firebase.auth().currentUser.displayName;
+  nameID = firebase.auth().currentUser.uid;
   
   location;
 
+  total;
   item;
   constructor(
     public route: ActivatedRoute,
@@ -20,20 +22,23 @@ export class CartTwoPage implements OnInit {
     public router: Router
   ) { }
 
-  ngOnInit() {
-    this.database.list('cart-list').valueChanges().subscribe(_data => {
+  async ngOnInit() {
+    this.database.list('cartList').valueChanges().subscribe(_data => {
       console.log(_data);
       firebase.database().ref('users/' + this.UID).once('value').then(data => {
         this.location = data.val().location;
       });
+    });
+    await firebase.database().ref('total').once('value').then(dat => {
+      console.log(dat.val());
+      this.total = dat.val();
     });
   }
   async  goBack() {
     await  this.router.navigate(['/food']);
   }
   async pushCart() {
-    await firebase.database().ref('total').once('value').then(dat => {
-      console.log(dat.val());
+    
     this.database.list('cartList').valueChanges().subscribe(_data => {
       console.log(_data);
       firebase.database().ref('users/' + this.UID).once('value').then(data => {
@@ -49,63 +54,32 @@ export class CartTwoPage implements OnInit {
         // Get a key for a new Post.
         let newPostKey = firebase.database().ref().child('posts').push().key;
         const list = {
-          id: newPostKey,
+          detailID: newPostKey,
           name: this.name,
+          nameID: this.nameID,
           location: this.location,
           food: _data,
+          date: curr_date + "-" + curr_month + "-" +  curr_year + ", " + curr_hourse + ":" + curr_minutes + ":" + curr_secounds,
           status: 'กำลังดำเนินการ',
-          total: dat.val()
+          total: this.total
         };
-            
-
         // Write the new post's data simultaneously in the posts list and the user's post list.
         let updates = {};
         updates['/detail/' + newPostKey] = list;
         updates['/users-detail/'  + this.UID +'/' + newPostKey] = list;
 
         return firebase.database().ref().update(updates).then((_data)=>{
-          let cartclc = {
-            cartList:''
-          };
+         
           let totalclc = {
             total:''
           }
-          firebase.database().ref().update(cartclc);
-          firebase.database().ref().update(totalclc);
-          this.checkion();
-          this.router.navigate(['/detail']);        
+          firebase.database().ref().update(totalclc)
+          this.router.navigate(['detail']);          
         }
         );
       });
     });
-  });
-  }
-  checkion(){
-    
-          var ref = firebase.database().ref('/detail/');
-          ref.orderByKey().on("child_added", function(snapshot) {
-            console.log(snapshot.key);
 
-            if(snapshot.val().food == null){
-              firebase.database().ref('/detail/' + snapshot.key).remove();
-            }
-            if(snapshot.val().total == null){
-              firebase.database().ref('/detail/' + snapshot.key).remove();
-            }
-            
-          })          
-          var ref2 = firebase.database().ref('users-detail/'  + this.UID );
-          ref2.orderByKey().on("child_added", function(snapshot) {
-            console.log(snapshot.key);
-            firebase.auth().currentUser.uid
-
-            if(snapshot.val().food == null){
-            firebase.database().ref('users-detail/'+ firebase.auth().currentUser.uid + '/' + snapshot.key ).remove();              
-            }
-            if(snapshot.val().total == null ){
-              firebase.database().ref('users-detail/'+ firebase.auth().currentUser.uid + '/' + snapshot.key ).remove();              
-              }
-          })
   }
   pushCartNew() {
   }

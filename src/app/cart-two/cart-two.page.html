@@ -5,14 +5,20 @@
 </ion-header>
 
 <ion-content padding align='center'>
-{{location}}
+  <ion-item>
+<ion-input [(ngModel)]="total"></ion-input>
+</ion-item>
+<label>
+  ที่อยู่ที่จัดส่ง
+</label>
+<ion-input [(ngModel)]="location"></ion-input>
 <ion-grid>
   <ion-row>
     <ion-col>
-      <ion-button (click)="pushCart()" routerDirection="" color="primary" fill="clear" size="small" type="submit" expand="block" round strong> ใช้ที่อยู่เดิม </ion-button>
+      <ion-button (click)="pushCart()" routerDirection="" color="primary"   type="submit" expand="block" round strong> ยืนยันการสั่งซื้อ </ion-button>
     </ion-col>
     <ion-col>
-      <ion-button (click)="pushCartNew()" routerDirection="" color="medium" fill="clear" size="small" type="submit" expand="block" round strong> ใช้ที่อยู่ใหม่ </ion-button>
+      <ion-button (click)="pushCartNew()" routerDirection="" color="medium"   type="submit" expand="block" round strong> สั่งอาหารเพิ่ม </ion-button>
     </ion-col>
   </ion-row>
 </ion-grid>
