@@ -19,6 +19,14 @@ export class SettingPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    
+    var user = firebase.auth().currentUser;
+    if (user) {
+      
+    } else {
+      this.router.navigate(['/home']);
+    }
+
     firebase.database().ref('users/' + firebase.auth().currentUser.uid).once('value').then( _data => {
       console.log(_data.val());
       this.email =  _data.val().email
@@ -39,5 +47,8 @@ export class SettingPage implements OnInit {
       this.router.navigate(['home']);
       });
     })
+  }
+  ioncPush() {
+    this.router.navigate(['settingEDIT']);
   }
 }

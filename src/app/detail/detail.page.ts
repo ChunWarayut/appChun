@@ -15,6 +15,14 @@ export class DetailPage implements OnInit {
     public router: Router) { }
 
   ngOnInit() {
+    
+    var user = firebase.auth().currentUser;
+    if (user) {
+      
+    } else {
+      this.router.navigate(['/home']);
+    }
+
     this.database.list('/users-detail/'  + this.ID, ref => ref.orderByChild('status')).valueChanges().subscribe(_data => {
       this.food = _data;
       console.log(_data);
@@ -23,20 +31,35 @@ export class DetailPage implements OnInit {
 
   onClick(item) {
     
-    let cartclc = {
-      cartList:''
-    };
     setTimeout(() => {
+      
+      firebase.database().ref('cartList/' + firebase.auth().currentUser.uid).orderByKey().on("child_added", snap =>{
 
-    firebase.database().ref().update(cartclc);
-    }, 500);
-    
+        let cartUP = {
+          amount:"",
+          amout:"", 
+          food:"" ,
+          foodID:"",
+          price:""
+        }
+
+        firebase.database().ref('/cartList/' +  firebase.auth().currentUser.uid+ '/'  + snap.key).update(cartUP).then( daletedss => {
+
+         firebase.database().ref('/cartList/'  +  firebase.auth().currentUser.uid+ '/' + snap.key).remove();            
+
+        })
+
+      });       
+
+    }, 2000);
     var ref = firebase.database().ref('/detail/');
     ref.orderByKey().on("child_added", function(snapshot) {
       console.log(snapshot.key);
 
-      if(snapshot.val().food == null || snapshot.val().total == null ){
-        firebase.database().ref('/detail/' + snapshot.key).remove();
+      if(snapshot.val().food == null || snapshot.val().total == "" || snapshot.val().food[0].foodID == ""){
+        setTimeout(() => {
+        firebase.database().ref('/detail/' + snapshot.key).remove();          
+        }, 2000);
       }
     })          
     var ref2 = firebase.database().ref('users-detail/'  + this.ID );
@@ -44,10 +67,11 @@ export class DetailPage implements OnInit {
       console.log(snapshot.key);
       firebase.auth().currentUser.uid
 
-      if(snapshot.val().food == null ||  snapshot.val().total == null ){
+      if(snapshot.val().food == null ||  snapshot.val().total == "" || snapshot.val().food[0].foodID == ""){
       firebase.database().ref('users-detail/'+ firebase.auth().currentUser.uid + '/' + snapshot.key ).remove();              
       }
-    }) 
+      
+    })
 
     this.router.navigate(['/detail-list', item]);
   }

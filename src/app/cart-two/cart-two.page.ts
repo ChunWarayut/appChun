@@ -23,7 +23,7 @@ export class CartTwoPage implements OnInit {
   ) { }
 
   async ngOnInit() {
-    this.database.list('cartList').valueChanges().subscribe(_data => {
+    this.database.list('cartList/' + firebase.auth().currentUser.uid).valueChanges().subscribe(_data => {
       console.log(_data);
       firebase.database().ref('users/' + this.UID).once('value').then(data => {
         this.location = data.val().location;
@@ -39,10 +39,10 @@ export class CartTwoPage implements OnInit {
   }
   async pushCart() {
     
-    this.database.list('cartList').valueChanges().subscribe(_data => {
+    this.database.list('cartList/' + firebase.auth().currentUser.uid).valueChanges().subscribe(_data => {
       console.log(_data);
       firebase.database().ref('users/' + this.UID).once('value').then(data => {
-        this.location = data.val().location;
+        
         let d = new Date();
         let curr_date = d.getDate();
         let curr_month = d.getMonth() + 1; //Months are zero based

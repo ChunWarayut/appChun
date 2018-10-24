@@ -3,23 +3,27 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>food</ion-title>
+    <ion-title>หน้าหลัก</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  <!-- <ion-button  color="primary" fill="outline"  expand="block" round strong>  
+<ion-content  align="center">
+    <img src="https://firebasestorage.googleapis.com/v0/b/lungnuad-a547e.appspot.com/o/Untitled-12.ico?alt=media&token=b7de86c3-bdd4-4a43-871e-e5cc5e0b36af" />
+
+  <ion-button  color="primary" fill="outline"  expand="block" round strong>  
     สวัสดี {{username}}
-  </ion-button> -->
-  <ion-grid>
+  </ion-button>
     <ion-row>
       <ion-col size="6" *ngFor="let item of food" (click)="onClick(item)">
+        <ion-card>
+
+        
         <p>
         <ion-img src="https://firebasestorage.googleapis.com/v0/b/lungnuad-a547e.appspot.com/o/images%2F{{item.FOOD_IMG}}.jpg?alt=media&token=b934ec8f-234a-47cf-9d6a-4b5376fdb8d8"></ion-img>
             &nbsp; {{item.FOOD_NAME}}  <br />
             &nbsp;   ราคา &nbsp; {{item.FOOD_PRICE}} &nbsp; บาท
         </p>
+      </ion-card>
       </ion-col>
     </ion-row>
-  </ion-grid>
 </ion-content>

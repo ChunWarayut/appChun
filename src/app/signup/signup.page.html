@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>signup</ion-title>
+    <ion-title>สมัครสมาชิก</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -12,34 +12,35 @@
   <ion-list>
 
       <ion-item>
-        <ion-label stacked>ชื่อ</ion-label>
+        <ion-label position="stacked">ชื่อ</ion-label>
         <ion-input type="text" [(ngModel)]="name" name="name" placeholder="ลุงหนวด"></ion-input>
       </ion-item>
 
       <ion-item>
-          <ion-label stacked>ที่อยู่</ion-label>
-          <ion-input type="text" [(ngModel)]="location" name="location" placeholder="25/1-2 สุรนารายณ์ ซอย 15 ต.ในเมือง อ.เมือง จ.นม."></ion-input>
+          <ion-label position="stacked">ที่อยู่</ion-label>
+          <ion-input text-wrap type="text" [(ngModel)]="location" name="location" placeholder="25/1-2 สุรนารายณ์ ซอย 15 ต.ในเมือง อ.เมือง จ.นม."></ion-input>
         </ion-item>
 
         <ion-item>
-            <ion-label stacked>เบอร์โทรศัพท์</ion-label>
+            <ion-label position="stacked">เบอร์โทรศัพท์</ion-label>
             <ion-input type="text" [(ngModel)]="phone" name="phone" placeholder="0912345678"></ion-input>
           </ion-item>
     
       <ion-item>
-        <ion-label stacked>อีเมล์</ion-label>
+        <ion-label position="stacked">อีเมล์</ion-label>
         <ion-input type="email" [(ngModel)]="email" name="email" placeholder="LungNuad@gmail.com"></ion-input>
       </ion-item>
     
       <ion-item>
-        <ion-label stacked>รหัสผ่าน</ion-label>
-        <ion-input  type="password" [(ngModel)]="password" name="password"  placeholder="LungNuad@gmail.com"></ion-input>
+        <ion-label position="stacked">รหัสผ่าน</ion-label>
+        <ion-input  type="password" [(ngModel)]="password" name="password"  placeholder="**********"></ion-input>
       </ion-item>
      
-      <ion-button expand="block" color="success" *ngIf="email && password && name && phone && location" (click)="signup()">สมัครสมาชิก</ion-button>
-      <ion-button expand="block" color="warning"  *ngIf="!email || !password || !name || !phone || !location" (click)="signupF()">สมัครสมาชิก</ion-button>
-
-    
     </ion-list>
 
+    <ion-button expand="block" color="success" *ngIf="email && password && name && phone && location" (click)="signup()">สมัครสมาชิก</ion-button>
+    <ion-button expand="block" color="warning"  *ngIf="!email || !password || !name || !phone || !location" (click)="signupF()">สมัครสมาชิก</ion-button>
+
+    <ion-button expand="block" color="danger" (click)="sBACK()">ย้อนกลับ</ion-button>
+  
 </ion-content>

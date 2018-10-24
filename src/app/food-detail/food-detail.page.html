@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>foodDetail</ion-title>
+    <ion-title> {{item.FOOD_NAME}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -22,7 +22,7 @@
           <ion-label>
             จำนวน : &nbsp;&nbsp;
           </ion-label>
-          <ion-input required type="text" name='amout' [(ngModel)]="amout" placeholder="จำนวนที่ต้องการสั่ง">
+          <ion-input required type="number" min="1" name='amout' [(ngModel)]="amout" placeholder="จำนวนที่ต้องการสั่ง">
             กล่อง
           </ion-input>
         </ion-item>

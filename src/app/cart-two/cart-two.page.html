@@ -1,26 +1,47 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>cartTwo</ion-title>
+    <ion-title>
+      ตรวจสอบที่อยู่ที่จัดสั่ง
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding align='center'>
-  <ion-item>
-<ion-input [(ngModel)]="total"></ion-input>
-</ion-item>
-<label>
-  ที่อยู่ที่จัดส่ง
-</label>
-<ion-input [(ngModel)]="location"></ion-input>
-<ion-grid>
-  <ion-row>
-    <ion-col>
-      <ion-button (click)="pushCart()" routerDirection="" color="primary"   type="submit" expand="block" round strong> ยืนยันการสั่งซื้อ </ion-button>
-    </ion-col>
-    <ion-col>
-      <ion-button (click)="pushCartNew()" routerDirection="" color="medium"   type="submit" expand="block" round strong> สั่งอาหารเพิ่ม </ion-button>
-    </ion-col>
-  </ion-row>
-</ion-grid>
-<ion-button (click)="goBack()" routerDirection="" color="primary" fill="full" round strong> กลับสู่หน้าหลัก </ion-button>
+<ion-content  align='center'>
+  
+    <ion-item lines="none" >
+        <ion-input readonly text-center hidden [(ngModel)]="total" >บาท</ion-input>
+    </ion-item>
+    <ion-card>
+        <ion-item color="warning" class="activated">
+          <ion-icon name="md-locate" slot="start"></ion-icon>
+            <ion-label>ที่อยู่ที่จัดส่ง</ion-label>
+        </ion-item>
+      
+        <ion-item color="light">
+          <ion-icon name="md-navigate" slot="start"></ion-icon>
+          <ion-input  [(ngModel)]="location"></ion-input>          
+        </ion-item>
+        
+      </ion-card>
+  
+<!-- 
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+
+          <ion-item lines="none" >
+              <ion-label position="fixed" text-center>
+                รวม
+              </ion-label>
+              <ion-input readonly text-center [(ngModel)]="total" ></ion-input>
+              <ion-label position="fixed" text-center>
+                บาท
+              </ion-label>    
+          </ion-item>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid> -->
+  <ion-button (click)="pushCart()" routerDirection="" color="warning"   type="submit" expand="block" round strong> ยืนยันการสั่งซื้อ </ion-button>
+  <ion-button (click)="goBack()" routerDirection="" color="medium" expand="full" round strong> กลับสู่หน้าหลัก </ion-button>
 </ion-content>

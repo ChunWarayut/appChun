@@ -37,7 +37,8 @@ export class SignupPage implements OnInit {
       location: this.location || '',
       phone: this.phone || '',
       email: this.email,
-      password: this.password
+      password: this.password,
+      userID: firebase.database().ref().key
     };
     const loader =  await this.loadingCtrl.create({
       message: 'Please wait...'
@@ -77,6 +78,9 @@ export class SignupPage implements OnInit {
     )
     .catch(function(error) {
     });
+    this.router.navigate(['/home']);
+  }
+  sBACK() {
     this.router.navigate(['/home']);
   }
 }

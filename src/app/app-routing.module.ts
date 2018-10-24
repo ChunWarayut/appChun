@@ -11,7 +11,8 @@ const routes: Routes = [
   { path: 'cartTwo', loadChildren: './cart-two/cart-two.module#CartTwoPageModule' },
   { path: 'detail', loadChildren: './detail/detail.module#DetailPageModule' },
   { path: 'detail-list', loadChildren: './detail-list/detail-list.module#DetailListPageModule' },
-  { path: 'setting', loadChildren: './setting/setting.module#SettingPageModule' },
+  { path: 'setting', loadChildren: './setting/setting.module#SettingPageModule' },  { path: 'settingEDIT', loadChildren: './setting-edit/setting-edit.module#SettingEDITPageModule' },
+
 
 
 ];

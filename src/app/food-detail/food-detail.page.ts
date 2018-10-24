@@ -37,7 +37,7 @@ export class FoodDetailPage implements OnInit {
           amount: this.amout,
           amout: this.amout * param.FOOD_PRICE
         };
-        firebase.database().ref('cartList/').push(cartList);
+        firebase.database().ref('cartList/' + firebase.auth().currentUser.uid).push(cartList);
         this.goTO();
       }
     );

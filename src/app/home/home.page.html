@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Home
+      ร้านอาหารลุงหนวด
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -11,26 +11,26 @@
   <ion-grid >
     <ion-row>
       <ion-col center text-center>
-        
         <img src="https://firebasestorage.googleapis.com/v0/b/lungnuad-a547e.appspot.com/o/Untitled-12.ico?alt=media&token=b7de86c3-bdd4-4a43-871e-e5cc5e0b36af" />
             
 <ion-list>
 
     <ion-item>
-      <ion-label stacked>ชื่อผู้ใช้</ion-label>
+      <ion-label position="stacked" >ชื่อผู้ใช้</ion-label>
       <ion-input type="email" [(ngModel)]="email" name="email"  required="required" placeholder="lungnuad@gmail.com"></ion-input>
     </ion-item>
   
     <ion-item>
-      <ion-label stacked>รหัสผ่าน</ion-label>
+      <ion-label position="stacked">รหัสผ่าน</ion-label>
       <ion-input type="password" [(ngModel)]="password" name="password" required="required"placeholder="********************"></ion-input>
     </ion-item>
 
   </ion-list>
    
-   
-  <a href="/signup">หากยังไม่มีบัญชี สร้างบัญชีที่นี่!!</a> 
-  <br/>
+    <a href="/signup">หากยังไม่มีบัญชี สร้างบัญชีที่นี่!!</a> 
+
+    <br/>
+    <br/>
   <ion-button expand="block"  color="success" *ngIf="email && password "  (click)="login()">
     เข้าสู่ระบบ
   </ion-button>

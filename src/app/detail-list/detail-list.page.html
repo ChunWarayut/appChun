@@ -3,28 +3,36 @@
       <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>  
-    <ion-title>detail-list</ion-title>
+    <ion-title>รายละเอียดการสั่งอาหาร</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content >
       <ion-card>
         <ion-list>
-            <ion-item >
-                รหัสใบสั่งซื้อ :&nbsp; &nbsp; {{detailID}}
+            <ion-item lines="full">
+                <ion-label position="stacked">รหัสสั่งซื้อ :</ion-label>
+               <ion-input realdonly value=" {{detailID}}"></ion-input>
             </ion-item>
-            <ion-item>
-                    &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;   ชื่อ : &nbsp; &nbsp;{{name}}
+
+            <ion-item lines="full">
+                    <ion-label position="stacked">ชื่อ :</ion-label>
+                    <ion-input readonly value="{{name}}"></ion-input>
             </ion-item>
-            <ion-item>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ที่จัดส่ง : &nbsp; &nbsp;{{location}}
+
+            <ion-item lines="full">
+                <ion-label  position="stacked"> จำนวนเงิน : </ion-label>  
+                <ion-input readonly value=" {{total}} บาท"></ion-input> 
             </ion-item>
-           
-            <ion-item>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ราคา : &nbsp; &nbsp;{{total}} &nbsp; บาท
+
+
+            <ion-item lines="full">
+                <ion-label position="stacked">ที่จัดส่ง :</ion-label> 
+                <ion-input readlnly value="{{location}}"></ion-input>
             </ion-item>
-            <ion-item >
-                <ion-label text-center>
+            
+            <ion-item lines="full">
+                <ion-label  text-center>
                     อาหารที่สั่ง
                 </ion-label> 
             </ion-item>
@@ -33,8 +41,11 @@
                         {{item.food}} จำนวน  {{item.amount}} กล่อง                   
                 </ion-label> 
             </ion-item>
+
+           
+
         </ion-list>
-        <ion-item >
+        <ion-item lines="full">
             <ion-label text-center>  
             สถานะการจัดส่ง: &nbsp; {{status}}                  
             </ion-label> 
