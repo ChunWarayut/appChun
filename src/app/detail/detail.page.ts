@@ -47,7 +47,7 @@ export class DetailPage implements OnInit {
       food:"" ,
       foodID:"",
       price:""
-    }
+    } 
 
     firebase.database().ref('/cartList/' +  firebase.auth().currentUser.uid+ '/'  + this.IDE ).update(cartUP).then( () => {
 
