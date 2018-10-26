@@ -29,53 +29,54 @@ export class DetailPage implements OnInit {
       this.food = _data;
       console.log(_data);
     });
+
+    
+    firebase.database().ref('cartList/' + firebase.auth().currentUser.uid).on("value", snap =>{
+
+      this.IDE = snap.key
+
+    });       
+
+
+  let cartUP = {
+    amount:"",
+    amout:"", 
+    food:"" ,
+    foodID:"",
+    price:""
+  } 
+   const sfxcinipec = firebase.database().ref('/cartList/' +  firebase.auth().currentUser.uid)
+
+  sfxcinipec.once("value").then(()=>{
+    sfxcinipec.update(cartUP);
+  }).then(()=> {
+    sfxcinipec.remove();
+  })
+
+  var ref = firebase.database().ref('/detail/');
+  ref.orderByKey().on("child_added", function(snapshot) {
+    console.log(snapshot.key);
+
+    if(snapshot.val().food == null || snapshot.val().total == 0 || snapshot.val().food[0].foodID == ""){
+      setTimeout(() => {
+      firebase.database().ref('/detail/' + snapshot.key).remove();          
+      }, 2000);
+    }
+  })          
+  var ref2 = firebase.database().ref('users-detail/'  + this.ID );
+  ref2.orderByKey().on("child_added", function(snapshot) {
+    console.log(snapshot.key);
+    firebase.auth().currentUser.uid
+
+    if(snapshot.val().food == null ||  snapshot.val().total == 0 || snapshot.val().food[0].foodID == ""){
+    firebase.database().ref('users-detail/'+ firebase.auth().currentUser.uid + '/' + snapshot.key ).remove();              
+    }
+    
+  })
+
   }
 
   onClick(item) {
-    
-      
-      firebase.database().ref('cartList/' + firebase.auth().currentUser.uid).orderByKey().on("child_added", snap =>{
-
-        this.IDE = snap.key
-
-      });       
-
-
-    let cartUP = {
-      amount:"",
-      amout:"", 
-      food:"" ,
-      foodID:"",
-      price:""
-    } 
-
-    firebase.database().ref('/cartList/' +  firebase.auth().currentUser.uid+ '/'  + this.IDE ).update(cartUP).then( () => {
-
-     firebase.database().ref('/cartList/'  +  firebase.auth().currentUser.uid+ '/' + this.IDE ).remove();            
-
-    })
-
-    var ref = firebase.database().ref('/detail/');
-    ref.orderByKey().on("child_added", function(snapshot) {
-      console.log(snapshot.key);
-
-      if(snapshot.val().food == null || snapshot.val().total == "" || snapshot.val().food[0].foodID == ""){
-        setTimeout(() => {
-        firebase.database().ref('/detail/' + snapshot.key).remove();          
-        }, 2000);
-      }
-    })          
-    var ref2 = firebase.database().ref('users-detail/'  + this.ID );
-    ref2.orderByKey().on("child_added", function(snapshot) {
-      console.log(snapshot.key);
-      firebase.auth().currentUser.uid
-
-      if(snapshot.val().food == null ||  snapshot.val().total == "" || snapshot.val().food[0].foodID == ""){
-      firebase.database().ref('users-detail/'+ firebase.auth().currentUser.uid + '/' + snapshot.key ).remove();              
-      }
-      
-    })
-
     this.router.navigate(['/detail-list', item]);
   }
 }

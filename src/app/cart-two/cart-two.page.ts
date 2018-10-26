@@ -70,7 +70,7 @@ export class CartTwoPage implements OnInit {
         updates['/users-detail/'  + this.UID +'/' + newPostKey] = list;
         return firebase.database().ref().update(updates).then((_data)=>{
           let totalclc = {
-            total:''
+            total:0
           }
           firebase.database().ref().update(totalclc)
           this.router.navigate(['detail']);          
