@@ -25,6 +25,7 @@ export class CartTwoPage implements OnInit {
   async ngOnInit() {
     this.database.list('cartList/' + firebase.auth().currentUser.uid).valueChanges().subscribe(_data => {
       console.log(_data);
+      this.item = _data;
       firebase.database().ref('users/' + this.UID).once('value').then(data => {
         this.location = data.val().location;
       });
@@ -39,10 +40,10 @@ export class CartTwoPage implements OnInit {
   }
   async pushCart() {
     
-    this.database.list('cartList/' + firebase.auth().currentUser.uid).valueChanges().subscribe(_data => {
-      console.log(_data);
       firebase.database().ref('users/' + this.UID).once('value').then(data => {
-        
+          /* 
+      this.database.list('cartList/' + firebase.auth().currentUser.uid).valueChanges().subscribe(_data => {
+        console.log(_data); */
         let d = new Date();
         let curr_date = d.getDate();
         let curr_month = d.getMonth() + 1; //Months are zero based
@@ -58,7 +59,7 @@ export class CartTwoPage implements OnInit {
           name: this.name,
           nameID: this.nameID,
           location: this.location,
-          food: _data,
+          food: this.item,
           date: curr_date + "-" + curr_month + "-" +  curr_year + ", " + curr_hourse + ":" + curr_minutes + ":" + curr_secounds,
           status: 'กำลังดำเนินการ',
           total: this.total
@@ -67,9 +68,7 @@ export class CartTwoPage implements OnInit {
         let updates = {};
         updates['/detail/' + newPostKey] = list;
         updates['/users-detail/'  + this.UID +'/' + newPostKey] = list;
-
         return firebase.database().ref().update(updates).then((_data)=>{
-         
           let totalclc = {
             total:''
           }
@@ -77,8 +76,8 @@ export class CartTwoPage implements OnInit {
           this.router.navigate(['detail']);          
         }
         );
-      });
-    });
+      });/*
+    }); */
 
   }
   pushCartNew() {

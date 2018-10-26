@@ -10,6 +10,8 @@ import * as firebase from 'firebase';
 export class DetailPage implements OnInit {
   food;
   ID = firebase.auth().currentUser.uid;
+
+  IDE
   constructor(
     public database: AngularFireDatabase,
     public router: Router) { }
@@ -31,27 +33,28 @@ export class DetailPage implements OnInit {
 
   onClick(item) {
     
-    setTimeout(() => {
       
       firebase.database().ref('cartList/' + firebase.auth().currentUser.uid).orderByKey().on("child_added", snap =>{
 
-        let cartUP = {
-          amount:"",
-          amout:"", 
-          food:"" ,
-          foodID:"",
-          price:""
-        }
-
-        firebase.database().ref('/cartList/' +  firebase.auth().currentUser.uid+ '/'  + snap.key).update(cartUP).then( daletedss => {
-
-         firebase.database().ref('/cartList/'  +  firebase.auth().currentUser.uid+ '/' + snap.key).remove();            
-
-        })
+        this.IDE = snap.key
 
       });       
 
-    }, 2000);
+
+    let cartUP = {
+      amount:"",
+      amout:"", 
+      food:"" ,
+      foodID:"",
+      price:""
+    }
+
+    firebase.database().ref('/cartList/' +  firebase.auth().currentUser.uid+ '/'  + this.IDE ).update(cartUP).then( () => {
+
+     firebase.database().ref('/cartList/'  +  firebase.auth().currentUser.uid+ '/' + this.IDE ).remove();            
+
+    })
+
     var ref = firebase.database().ref('/detail/');
     ref.orderByKey().on("child_added", function(snapshot) {
       console.log(snapshot.key);
