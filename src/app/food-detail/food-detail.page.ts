@@ -12,7 +12,7 @@ export class FoodDetailPage implements OnInit {
   newPostKey = firebase.database().ref().child('posts').push().key;
   food;
   item: any;
-  amout;
+  amout:number;
   constructor(
     private route: ActivatedRoute,
     public toastController: ToastController,
@@ -37,7 +37,11 @@ export class FoodDetailPage implements OnInit {
           amount: this.amout,
           amout: this.amout * param.FOOD_PRICE
         };
-        firebase.database().ref('cartList/' + firebase.auth().currentUser.uid).push(cartList);
+        const update = {}
+        const sum : number =Number (param.amount) + this.amout
+        update['cartList/' + firebase.auth().currentUser.uid + '/' + this.newPostKey] = cartList;
+        update['food-list/' + param.key + '/' + 'amount'] = Number(sum);
+        firebase.database().ref().update(update);
         this.goTO();
       }
     );

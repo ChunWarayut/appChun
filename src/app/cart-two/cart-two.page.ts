@@ -30,7 +30,7 @@ export class CartTwoPage implements OnInit {
         this.location = data.val().location;
       });
     });
-    await firebase.database().ref('total').once('value').then(dat => {
+    await firebase.database().ref('summary/'+firebase.auth().currentUser.uid +'/total').once('value').then(dat => {
       console.log(dat.val());
       this.total = dat.val();
     });
@@ -62,7 +62,9 @@ export class CartTwoPage implements OnInit {
           food: this.item,
           date: curr_date + "-" + curr_month + "-" +  curr_year + ", " + curr_hourse + ":" + curr_minutes + ":" + curr_secounds,
           status: 'กำลังดำเนินการ',
-          total: this.total
+          statusNum : 0,
+          total: this.total,
+          color: 'danger'
         };
         // Write the new post's data simultaneously in the posts list and the user's post list.
         let updates = {};
@@ -72,7 +74,7 @@ export class CartTwoPage implements OnInit {
           let totalclc = {
             total:0
           }
-          firebase.database().ref().update(totalclc)
+          firebase.database().ref('summary/'+firebase.auth().currentUser.uid).update(totalclc)
           this.router.navigate(['detail']);          
         }
         );

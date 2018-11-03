@@ -7,20 +7,31 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-    <ion-list *ngFor="let item of food "  (click)="onClick(item)">
-      <ion-item>
+<ion-content >
+  <p  *ngFor="let item of food "  (click)="onClick(item)">
+
+    <ion-card (click)="onClick(item)">
+    <ion-list  >
+      <ion-item color="{{item.color}}"> 
         <ion-label position="stacked"> 
           รหัสใบสั่งซื้อ : 
         </ion-label>
-        <ion-input readonly value="{{item.detailID}}"></ion-input>
+        <ion-input  readonly value="{{item.detailID}}"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="stacked"> 
-          สถานะการสั่งอาหาร
+          สถานะ
         </ion-label>
         <ion-input readonly value="{{item.status}} "></ion-input>
       </ion-item>
+      <ion-item>
+        <ion-label  position="stacked"> 
+          วันที่
+        </ion-label>
+        <ion-input readonly value="{{item.date}} "></ion-input>
+      </ion-item>
 
     </ion-list>
+    </ion-card>
+  </p>
 </ion-content>

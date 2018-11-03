@@ -15,6 +15,7 @@ export class DetailListPage implements OnInit {
   total
   location
   status
+  color
 
 /* 
   id = '00';
@@ -40,9 +41,10 @@ export class DetailListPage implements OnInit {
         this.name = param.name;
         this.total = param.total
         this.location = param.location;
-        this.status = param.status
+        this.status = param.status;
+        this.color = param.color;
         this.database.list('users-detail/'  + firebase.auth().currentUser.uid + '/' + param.detailID).valueChanges().subscribe(_data => {
-          this.detail = _data[2];
+          this.detail = _data[3];
           console.log(this.detail);
         });
       }

@@ -17,7 +17,6 @@ export class CartPage implements OnInit {
   ) { }
 
   async ngOnInit() {
-    
     var user = firebase.auth().currentUser;
     if (user) {
       
@@ -36,7 +35,7 @@ export class CartPage implements OnInit {
       const summary = {
         total: this.total
       };
-    firebase.database().ref().update(summary);
+    firebase.database().ref('summary/'+firebase.auth().currentUser.uid).update(summary);
     });
   }
   async  goBack() {
@@ -44,5 +43,10 @@ export class CartPage implements OnInit {
   }
   async goTO() {
     await this.router.navigate(['/cartTwo']);
+  }
+  async deleted(item) {
+    console.log(item);
+    firebase.database().ref('cartList/' + firebase.auth().currentUser.uid + '/' + item.foodID).remove()
+    
   }
 }

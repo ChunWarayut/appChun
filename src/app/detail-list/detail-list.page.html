@@ -27,7 +27,7 @@
 
 
             <ion-item lines="full">
-                <ion-label position="stacked">ที่จัดส่ง :</ion-label> 
+                <ion-label position="stacked">ที่อยู่ที่จัดส่ง :</ion-label> 
                 <ion-input readlnly value="{{location}}"></ion-input>
             </ion-item>
             
@@ -38,16 +38,16 @@
             </ion-item>
             <ion-item *ngFor="let item of detail">
                 <ion-label text-center>
-                        {{item.food}} จำนวน  {{item.amount}} กล่อง                   
+                        {{item.food}} จำนวน  {{item.amount}} กล่อง  
                 </ion-label> 
             </ion-item>
 
            
 
         </ion-list>
-        <ion-item lines="full">
+        <ion-item color="{{color}}" lines="full">
             <ion-label text-center>  
-            สถานะการจัดส่ง: &nbsp; {{status}}                  
+            สถานะ: &nbsp; {{status}}                  
             </ion-label> 
         </ion-item>
 </ion-card>

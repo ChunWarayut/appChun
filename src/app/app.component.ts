@@ -19,6 +19,11 @@ export class AppComponent {
       icon: 'home'
     },
     {
+      title: 'เมนูยอดนิยม',
+      url: '/foodRank',
+      icon: 'ribbon'
+    },
+    {
       title: 'อาหารที่สั่ง',
       url: '/cart',
       icon: 'cart'
@@ -31,7 +36,7 @@ export class AppComponent {
     {
       title: 'ข้อมูลส่วนตัว',
       url: '/setting',
-      icon: 'settings'
+      icon: 'contact'
     }
   ];
 
