@@ -19,22 +19,21 @@ export class FoodPage implements OnInit {
    }
 
   ngOnInit() {
-    
-    var user = firebase.auth().currentUser;
+    const user = firebase.auth().currentUser;
     if (!user) {
-      this.router.navigate(['/home']);      
+      this.router.navigate(['/home']);
     }
 
-    firebase.auth().onAuthStateChanged(function(user) {
-      if (user) {
+    firebase.auth().onAuthStateChanged(function(users) {
+      if (users) {
         // User is signed in.
-        var displayName = user.displayName;
-        var email = user.email;
-        var uid = user.uid;
-         
+        const displayName = users.displayName;
+        const email = users.email;
+        const uid = users.uid;
+
         console.log(displayName, email, uid, this.photoURL);
 
-        
+
         // ...
       } else {
         // User is signed out.

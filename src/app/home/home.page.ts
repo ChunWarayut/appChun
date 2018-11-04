@@ -15,7 +15,14 @@ export class HomePage {
     public toastController: ToastController,
     public loadingController: LoadingController,
     public router: Router
-    ) {}
+    ) {
+      const user = firebase.auth().currentUser;
+      if (!user) {
+        this.router.navigate(['/home']);
+      } else {
+        this.router.navigate(['/food']);
+      }
+    }
 
   async loginFailPresentToast() {
     const toast = await this.toastController.create({

@@ -4,8 +4,8 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
-import * as firebase from 'firebase';
 import { Router } from '@angular/router';
+import { SeoService } from '../app/seo.service';
 
 @Component({
   selector: 'app-root',
@@ -41,13 +41,17 @@ export class AppComponent {
   ];
 
   constructor(
+    private seo: SeoService,
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     public router: Router
-    
   ) {
-    
+    seo.addTwitterCard(
+      'ร้านอาหารลุงหนวด',
+      'ร้านอาหารลุงหนวด ร้านเด็ดในอำเภอเมืองพล จังหวัดขอนแก่น',
+      '../assets/icon/img.jpg'
+    );
     this.initializeApp();
   }
 
