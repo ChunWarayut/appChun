@@ -22,11 +22,51 @@
           <ion-label>
             จำนวน : &nbsp;&nbsp;
           </ion-label>
-          <ion-input required type="number" min="1" name='amout' [(ngModel)]="amout" placeholder="จำนวนที่ต้องการสั่ง">
+          <ion-input required type="number" readonly min="1" id='amout'  name='amout' [(ngModel)]="amout" value="0" placeholder="จำนวนที่ต้องการสั่ง">
             กล่อง
           </ion-input>
         </ion-item>
     </p>
+      
+        <ion-list>
+          <ion-list-header>
+            จำนวน
+            <ion-badge item-end color="danger">{{amout}}</ion-badge>
+          </ion-list-header>
+          <ion-item>
+            <ion-range min="1" max="20" step="1" snaps="true" [(ngModel)]="amout" color="danger">
+              <ion-icon range-left small color="danger" name="thermometer"></ion-icon>
+              <ion-icon range-right color="danger" name="thermometer"></ion-icon>
+            </ion-range>
+          </ion-item>
+        </ion-list>
+
+        <ion-list>
+            <ion-list-header>
+              จำนวน
+              <ion-badge item-end color="danger">{{amout}}</ion-badge>
+            </ion-list-header>
+            <ion-item>
+              <ion-range min="21" max="60" step="1" snaps="true" [(ngModel)]="amout" color="danger">
+                <ion-icon range-left small color="danger" name="thermometer"></ion-icon>
+                <ion-icon range-right color="danger" name="thermometer"></ion-icon>
+              </ion-range>
+            </ion-item>
+          </ion-list>
+  
+        <ion-list>
+            <ion-list-header>
+              จำนวน
+              <ion-badge item-end color="danger">{{amout}}</ion-badge>
+            </ion-list-header>
+            <ion-item>
+              <ion-range min="61" max="100" step="1" snaps="true" [(ngModel)]="amout" color="danger">
+                <ion-icon range-left small color="danger" name="thermometer"></ion-icon>
+                <ion-icon range-right color="danger" name="thermometer"></ion-icon>
+              </ion-range>
+            </ion-item>
+          </ion-list>
+  
     <ion-grid>
       <ion-row>
         <ion-col>

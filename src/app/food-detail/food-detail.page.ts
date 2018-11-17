@@ -8,7 +8,8 @@ import * as firebase from 'firebase';
   styleUrls: ['./food-detail.page.scss'],
 })
 export class FoodDetailPage implements OnInit {
-
+  warmth: number = 1;
+  brightness: number = 1;
   newPostKey = firebase.database().ref().child('posts').push().key;
   food;
   item: any;
@@ -18,6 +19,8 @@ export class FoodDetailPage implements OnInit {
     public toastController: ToastController,
     private router: Router
   ) {
+  }
+  onClick() {
   }
   ngOnInit() {
     this.route.params.subscribe(
@@ -38,9 +41,9 @@ export class FoodDetailPage implements OnInit {
           amout: this.amout * param.FOOD_PRICE
         };
         const update = {}
-        const sum : number =Number (param.amount) + this.amout
+        const sum : number =Number(param.amount) + this.amout
         update['cartList/' + firebase.auth().currentUser.uid + '/' + this.newPostKey] = cartList;
-        update['food-list/' + param.key + '/' + 'amount'] = Number(sum);
+        update['food-list/' + param.key + '/' + 'amount'] = Number(sum); 
         firebase.database().ref().update(update);
         this.goTO();
       }

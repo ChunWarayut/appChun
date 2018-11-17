@@ -47,6 +47,6 @@ export class CartPage implements OnInit {
   async deleted(item) {
     console.log(item);
     firebase.database().ref('cartList/' + firebase.auth().currentUser.uid + '/' + item.foodID).remove()
-    
+    await  this.router.navigate(['/food']);
   }
 }

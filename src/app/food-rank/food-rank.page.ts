@@ -22,7 +22,7 @@ export class FoodRankPage implements OnInit {
     if (!user) {
       this.router.navigate(['/home']);      
     }
-    this.database.list('/food-list/', ref => ref.orderByChild('amount').startAt(1).limitToFirst(4)).valueChanges().subscribe(_data => {
+    this.database.list('/food-list/', ref => ref.orderByChild('amount').limitToLast(1)).valueChanges().subscribe(_data => {
       this.food = _data;
     });
   }
