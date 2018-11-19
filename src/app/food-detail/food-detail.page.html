@@ -6,7 +6,7 @@
 
 <ion-content padding>
     <p>
-    <ion-img src="https://firebasestorage.googleapis.com/v0/b/lungnuad-a547e.appspot.com/o/images%2F{{item.FOOD_IMG}}.jpg?alt=media&token=b934ec8f-234a-47cf-9d6a-4b5376fdb8d8"></ion-img>
+    <ion-img src="https://firebasestorage.googleapis.com/v0/b/test-98b25.appspot.com/o/images%2F{{item.FOOD_IMG}}.jpg?alt=media&token=f20a56f1-6ecd-4244-bec2-5344d235038b"></ion-img>
       <ion-item color='warning'>
         <ion-label>
           {{item.FOOD_NAME}}
@@ -22,7 +22,7 @@
           <ion-label>
             จำนวน : &nbsp;&nbsp;
           </ion-label>
-          <ion-input required type="number" readonly min="1" id='amout'  name='amout' [(ngModel)]="amout" value="0" placeholder="จำนวนที่ต้องการสั่ง">
+          <ion-input required type="number" readonly min="1" id='amout' id="amout" name='amout' [(ngModel)]="amout" value="1" placeholder="จำนวนที่ต้องการสั่ง">
             กล่อง
           </ion-input>
         </ion-item>
@@ -34,38 +34,13 @@
             <ion-badge item-end color="danger">{{amout}}</ion-badge>
           </ion-list-header>
           <ion-item>
-            <ion-range min="1" max="20" step="1" snaps="true" [(ngModel)]="amout" color="danger">
+            <ion-range min="1" max="30" step="1" snaps="true" [(ngModel)]="amout" color="danger">
               <ion-icon range-left small color="danger" name="thermometer"></ion-icon>
               <ion-icon range-right color="danger" name="thermometer"></ion-icon>
             </ion-range>
           </ion-item>
         </ion-list>
 
-        <ion-list>
-            <ion-list-header>
-              จำนวน
-              <ion-badge item-end color="danger">{{amout}}</ion-badge>
-            </ion-list-header>
-            <ion-item>
-              <ion-range min="21" max="60" step="1" snaps="true" [(ngModel)]="amout" color="danger">
-                <ion-icon range-left small color="danger" name="thermometer"></ion-icon>
-                <ion-icon range-right color="danger" name="thermometer"></ion-icon>
-              </ion-range>
-            </ion-item>
-          </ion-list>
-  
-        <ion-list>
-            <ion-list-header>
-              จำนวน
-              <ion-badge item-end color="danger">{{amout}}</ion-badge>
-            </ion-list-header>
-            <ion-item>
-              <ion-range min="61" max="100" step="1" snaps="true" [(ngModel)]="amout" color="danger">
-                <ion-icon range-left small color="danger" name="thermometer"></ion-icon>
-                <ion-icon range-right color="danger" name="thermometer"></ion-icon>
-              </ion-range>
-            </ion-item>
-          </ion-list>
   
     <ion-grid>
       <ion-row>
