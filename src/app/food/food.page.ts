@@ -12,7 +12,11 @@ export class FoodPage implements OnInit {
   username = firebase.auth().currentUser.displayName;
   photoURL = firebase.auth().currentUser.photoURL;
   food;
-  foods
+  foods 
+  foods1
+  foods2
+  foods3
+  foods4
   constructor(
     public database: AngularFireDatabase,
     public router: Router
@@ -45,8 +49,26 @@ export class FoodPage implements OnInit {
       this.food = _data;
     });
 
-    this.database.list('/food-list/', ref => ref.orderByChild('amount').limitToLast(6)).valueChanges().subscribe(_data => {
+    this.database.list('/food-list/', ref => ref.orderByChild('amount').limitToLast(3)).valueChanges().subscribe(_data => {
       this.foods = _data.reverse();
+    });
+
+    
+    this.database.list('/food-list/', ref => ref.orderByChild('FOOD_TYPE_NAME').equalTo('ผัด')).valueChanges().subscribe(_data => {
+      this.foods1 = _data;
+    });
+
+    
+    this.database.list('/food-list/', ref => ref.orderByChild('FOOD_TYPE_NAME').equalTo('แกง')).valueChanges().subscribe(_data => {
+      this.foods2 = _data;
+    });
+
+    this.database.list('/food-list/', ref => ref.orderByChild('FOOD_TYPE_NAME').equalTo('ของหวาน')).valueChanges().subscribe(_data => {
+      this.foods3 = _data;
+    });
+    
+    this.database.list('/food-list/', ref => ref.orderByChild('FOOD_TYPE_NAME').equalTo('ต้ม')).valueChanges().subscribe(_data => {
+      this.foods4 = _data;
     });
   }
   onClick(item) {
