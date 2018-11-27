@@ -25,7 +25,7 @@ export class DetailPage implements OnInit {
       this.router.navigate(['/home']);
     }
 
-    this.database.list('/users-detail/'  + this.ID, ref => ref.orderByChild('statusNum')).valueChanges().subscribe(_data => {
+    this.database.list('/users-detail/'  + this.ID, ref => ref.orderByChild('statusNumC').equalTo(1)).valueChanges().subscribe(_data => {
       this.food = _data;
       console.log(_data);
     });

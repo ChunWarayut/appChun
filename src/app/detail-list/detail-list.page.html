@@ -31,18 +31,17 @@
                 <ion-input readlnly value="{{location}}"></ion-input>
             </ion-item>
             
-            <ion-item lines="full">
+            <ion-item lines="full" color="primary">
                 <ion-label  text-center>
                     อาหารที่สั่ง
                 </ion-label> 
             </ion-item>
-            <ion-item *ngFor="let item of detail">
+            <ion-item *ngFor="let item of detail" >
                 <ion-label text-center>
                         {{item.food}} จำนวน  {{item.amount}} กล่อง  
                 </ion-label> 
             </ion-item>
 
-           
 
         </ion-list>
         <ion-item color="{{color}}" lines="full">

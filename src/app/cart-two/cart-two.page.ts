@@ -63,6 +63,7 @@ export class CartTwoPage implements OnInit {
           date: curr_date + "-" + curr_month + "-" +  curr_year + ", " + curr_hourse + ":" + curr_minutes + ":" + curr_secounds,
           status: 'กำลังดำเนินการ',
           statusNum : 0,
+          statusNumC: 1,
           total: this.total,
           color: 'danger'
         };

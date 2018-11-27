@@ -19,9 +19,9 @@ export class AppComponent {
       icon: 'home'
     },
     {
-      title: 'เมนูยอดนิยม',
-      url: '/foodRank',
-      icon: 'ribbon'
+      title: 'ประวัติ',
+      url: '/history',
+      icon: 'clock'
     },
     {
       title: 'อาหารที่สั่ง',
@@ -29,7 +29,7 @@ export class AppComponent {
       icon: 'cart'
     },
     {
-      title: 'สถานะอาหาร',
+      title: 'สถานะ',
       url: '/detail',
       icon: 'basket'
     },

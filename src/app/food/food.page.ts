@@ -12,6 +12,7 @@ export class FoodPage implements OnInit {
   username = firebase.auth().currentUser.displayName;
   photoURL = firebase.auth().currentUser.photoURL;
   food;
+  foods
   constructor(
     public database: AngularFireDatabase,
     public router: Router
@@ -42,6 +43,10 @@ export class FoodPage implements OnInit {
     });
     this.database.list('/food-list/').valueChanges().subscribe(_data => {
       this.food = _data;
+    });
+
+    this.database.list('/food-list/', ref => ref.orderByChild('amount').limitToLast(6)).valueChanges().subscribe(_data => {
+      this.foods = _data.reverse();
     });
   }
   onClick(item) {
