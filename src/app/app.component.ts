@@ -19,7 +19,7 @@ export class AppComponent {
       icon: 'home'
     },
     {
-      title: 'ประวัติ',
+      title: 'ประวัติการสั่ง',
       url: '/history',
       icon: 'clock'
     },

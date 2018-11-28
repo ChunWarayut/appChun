@@ -43,7 +43,7 @@ export class FoodDetailPage implements OnInit {
           amout: this.amout * param.FOOD_PRICE
         };
         const update = {}
-        const sum : number =Number(param.amount) + this.amout
+        const sum : number =Number(param.amount) + Number(this.amout)
         update['cartList/' + firebase.auth().currentUser.uid + '/' + this.newPostKey] = cartList;
         update['food-list/' + param.key + '/' + 'amount'] = Number(sum); 
         firebase.database().ref().update(update);
