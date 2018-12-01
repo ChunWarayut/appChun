@@ -9,29 +9,29 @@ import { AngularFireDatabase } from 'angularfire2/database';
 })
 export class DetailListPage implements OnInit {
 
-  detailID
-  name
-  item
-  total
-  location
-  status
-  color
+  detailID;
+  name;
+  item;
+  total;
+  location;
+  status;
+  color;
 
-/* 
+/*
   id = '00';
   location = '000';
   name = '000';
   status = '000';
   total = '0000'; */
 
-  detail
+  detail;
   constructor(
     public database: AngularFireDatabase,
-    
+
     private route: ActivatedRoute,
 
-  ) { 
-    
+  ) {
+
   }
 
   ngOnInit() {
@@ -39,7 +39,7 @@ export class DetailListPage implements OnInit {
       param => {
         this.detailID = param.detailID;
         this.name = param.name;
-        this.total = param.total
+        this.total = param.total;
         this.location = param.location;
         this.status = param.status;
         this.color = param.color;

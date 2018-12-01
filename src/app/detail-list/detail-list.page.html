@@ -22,7 +22,7 @@
 
             <ion-item lines="full">
                 <ion-label  position="stacked"> จำนวนเงิน : </ion-label>  
-                <ion-input readonly value=" {{total}} บาท"></ion-input> 
+                <ion-input readonly value=" {{total | number}} บาท"></ion-input> 
             </ion-item>
 
 
@@ -31,15 +31,18 @@
                 <ion-input readlnly value="{{location}}"></ion-input>
             </ion-item>
             
-            <ion-item lines="full" color="primary">
+            <ion-item lines="full" color="{{color}}">
                 <ion-label  text-center>
                     อาหารที่สั่ง
                 </ion-label> 
             </ion-item>
             <ion-item *ngFor="let item of detail" >
-                <ion-label text-center>
-                        {{item.food}} จำนวน  {{item.amount}} กล่อง  
+                <ion-label >
+                        {{item.food}} 
                 </ion-label> 
+                <ion-input>
+                    จำนวน  {{item.amount}} กล่อง 
+                </ion-input>
             </ion-item>
 
 
