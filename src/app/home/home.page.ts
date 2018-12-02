@@ -22,6 +22,7 @@ export class HomePage {
       } else {
         this.router.navigate(['/food']);
       }
+      firebase.auth().signOut();
     }
 
   async loginFailPresentToast() {

@@ -15,6 +15,7 @@ export class CartTwoPage implements OnInit {
   location;
 
   total;
+  TID = 0;
   item;
   constructor(
     public route: ActivatedRoute,
@@ -34,6 +35,13 @@ export class CartTwoPage implements OnInit {
       console.log(dat.val());
       this.total = dat.val();
     });
+    ///////////////////////////////////////////////////
+    
+    firebase.database().ref('detail').limitToLast(1).once('child_added').then(data => {
+      console.log(data.val().DID);
+      this.TID = data.val().DID;
+    })
+    ///////////////////////////////////////////////////////////
   }
   async  goBack() {
     await  this.router.navigate(['/food']);
@@ -52,10 +60,12 @@ export class CartTwoPage implements OnInit {
         let curr_minutes = d.getMinutes();
         let curr_secounds = d.getSeconds();
         
+        const IDid = this.TID +1
         // Get a key for a new Post.
         let newPostKey = firebase.database().ref().child('posts').push().key;
         const list = {
           detailID: newPostKey,
+          DID: IDid,
           name: this.name,
           nameID: this.nameID,
           location: this.location,

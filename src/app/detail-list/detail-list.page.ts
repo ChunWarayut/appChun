@@ -10,6 +10,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
 export class DetailListPage implements OnInit {
 
   detailID;
+  DID
   name;
   item;
   total;
@@ -38,6 +39,7 @@ export class DetailListPage implements OnInit {
     this.route.params.subscribe(
       param => {
         this.detailID = param.detailID;
+        this.DID = param.DID;
         this.name = param.name;
         this.total = param.total;
         this.location = param.location;

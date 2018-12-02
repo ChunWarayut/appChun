@@ -29,6 +29,8 @@ export class SignupPage implements OnInit {
       position: 'top'
     });
     toast.present();
+    this.router.navigate(['/home']);
+
   }
 
   async signup() {
@@ -44,6 +46,7 @@ export class SignupPage implements OnInit {
       message: 'Please wait...'
     });
     await  loader.present();
+
     firebase.auth().createUserWithEmailAndPassword(account['email'], account['password'])
     .then(
       newUser => {
@@ -64,6 +67,7 @@ export class SignupPage implements OnInit {
             authUser => {
               firebase.database().ref('users').child(authUser.user.uid).set(account);
               loader.dismiss();
+             return this.router.navigate(['/food']);
         }
       )
       .catch(async error => {
@@ -73,12 +77,34 @@ export class SignupPage implements OnInit {
           position: 'top'
         });
         await toast.present();
+        loader.dismiss();
+
       });
     }
     )
-    .catch(function(error) {
+    .catch(async function( error) {
+    const toast = await this.toastCtrl.create({
+      message: 'กรุณากรอกข้อมูลให้ครบถ้วน',
+      duration: 3000,
+      position: 'top'
     });
+    await toast.present();
+    loader.dismiss();
+
+
+    });
+    const toastt = await this.toastCtrl.create({
+      message: 'กรุณากรอกข้อมูลให้ถูกต้อง',
+      duration: 1000,
+      position: 'top'
+    });
+    await toastt.present();
     this.router.navigate(['/home']);
+
+    setTimeout(() => {
+    loader.dismiss();
+    }, 1000);
+
   }
   sBACK() {
     this.router.navigate(['/home']);

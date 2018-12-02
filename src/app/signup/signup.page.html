@@ -13,33 +13,32 @@
 
       <ion-item>
         <ion-label position="stacked">ชื่อ</ion-label>
-        <ion-input type="text" [(ngModel)]="name" name="name" placeholder="ลุงหนวด"></ion-input>
+        <ion-input type="text" [(ngModel)]="name" name="name" placeholder="เช่น ลุงหนวด ขายทุกวัน"></ion-input>
       </ion-item>
-
       <ion-item>
           <ion-label position="stacked">ที่อยู่</ion-label>
-          <ion-input text-wrap type="text" [(ngModel)]="location" name="location" placeholder="25/1-2 สุรนารายณ์ ซอย 15 ต.ในเมือง อ.เมือง จ.นม."></ion-input>
+          <ion-input text-wrap type="text" [(ngModel)]="location" name="location" placeholder=" เช่น 25/1-2 สุรนารายณ์ ซอย 15 ต.ในเมือง อ.เมือง จ.นม."></ion-input>
         </ion-item>
 
         <ion-item>
             <ion-label position="stacked">เบอร์โทรศัพท์</ion-label>
-            <ion-input type="text" [(ngModel)]="phone" name="phone" placeholder="0912345678"></ion-input>
+            <ion-input type="tel" [(ngModel)]="phone" name="phone" placeholder="เช่น 0912345678"></ion-input>
           </ion-item>
     
       <ion-item>
         <ion-label position="stacked">อีเมล์</ion-label>
-        <ion-input type="email" [(ngModel)]="email" name="email" placeholder="LungNuad@gmail.com"></ion-input>
+        <ion-input type="email" [(ngModel)]="email" name="email" placeholder=" เช่น LungNuad@gmail.com"></ion-input>
       </ion-item>
     
       <ion-item>
         <ion-label position="stacked">รหัสผ่าน</ion-label>
-        <ion-input  type="password" [(ngModel)]="password" name="password"  placeholder="**********"></ion-input>
+        <ion-input  type="password" [(ngModel)]="password" name="password" minlength="6"  placeholder="ป้อนอักขระอย่างน้อย 6 ตัว"></ion-input>
       </ion-item>
      
     </ion-list>
 
     <ion-button expand="block" color="success" *ngIf="email && password && name && phone && location" (click)="signup()">สมัครสมาชิก</ion-button>
-    <ion-button expand="block" color="warning"  *ngIf="!email || !password || !name || !phone || !location" (click)="signupF()">สมัครสมาชิก</ion-button>
+    <ion-button expand="block" color="warning"  *ngIf="!email || !password || !name || !phone || !location||password.minlength>=6" (click)="signupF()">สมัครสมาชิก</ion-button>
 
     <ion-button expand="block" color="danger" (click)="sBACK()">ย้อนกลับ</ion-button>
   
