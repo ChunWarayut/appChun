@@ -51,7 +51,7 @@ export class SettingEDITPage implements OnInit {
       phone : this.phone
     }
     firebase.database().ref('users/' + firebase.auth().currentUser.uid).update(account).then( () =>{
-      this.router.navigate(['home'])
+      this.router.navigate(['setting'])
     });
   }
 }
